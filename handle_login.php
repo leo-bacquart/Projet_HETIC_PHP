@@ -20,10 +20,10 @@ if (!isset($_SESSION['isLoggedIn'])) {
 }
 
 
-if (isset($_POST['username']) && isset($_POST['password'])) {
-    $username = $_POST['username'];
+if (isset($_POST['login_username']) && isset($_POST['login_password'])) {
+    $username = $_POST['login_username'];
     $_SESSION['username'] = $username;
-    $password = $_POST['password'];
+    $password = $_POST['login_password'];
 
     foreach ($userArray as $user) {
         if ($username == $user['username'] && $password == $user['password']) {
@@ -43,19 +43,44 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ?>
 
 <?php if (!$_SESSION['isLoggedIn'] || !isset($_SESSION['isLoggedIn'])): ?>
-    <form action="#" method="post" class="column is-three-fifths is-offset-one-fifth">
-        <div class="field">
-            <label for="username" class="label">Username : </label>
-            <input type="text" name="username" id="username" class="input">
-        </div>
+        <form action="#" method="post" class="column is-half box is-offset-one-quarter">
+            <div class="field">
+                <label for="login_username" class="label">Username : </label>
+                <input type="text" name="login_username" id="login_username" class="input">
+            </div>
 
-        <div class="field">
-            <label for="password" class="label">Password : </label>
-            <input type="password" name="password" id="password" class="input">
-        </div>
+            <div class="field">
+                <label for="login_password" class="label">Password : </label>
+                <input type="password" name="login_password" id="login_password" class="input">
+            </div>
 
-        <input type="submit" content="Submit" class="button is-link">
-    </form>
+            <div class="field">
+                <input type="submit" content="Submit" class="button is-link" value="Login">
+            </div>
+
+        </form>
+    <br>
+        <form action="handle_register.php" method="post" class="column is-half box is-offset-one-quarter">
+            <div class="field">
+                <label for="register_username" class="label">Username : </label>
+                <input type="text" name="register_username" id="register_username" class="input">
+            </div>
+
+            <div class="field">
+                <label for="register_password" class="label">Password : </label>
+                <input type="password" name="register_password" id="register_password" class="input">
+            </div>
+
+            <div class="field">
+                <label for="register_confirm_password" class="label">Confirm password : </label>
+                <input type="password" name="register_confirm_password" id="register_confirm_password" class="input">
+            </div>
+
+            <div class="field">
+                <input type="submit" content="Submit" class="button is-primary" value="Register">
+            </div>
+
+        </form>
 <?php else: ?>
     <div class="connected">Bonjour <?php
         if ($_SESSION['isAdmin']) {

@@ -29,7 +29,7 @@ global $isAdmin;
 <!-- Possibilité de poster uniquement si user est connecté -->
 <?php if ($_SESSION['isLoggedIn']): ?>
 
-    <a href="post.php"> Poster</a>
+    <a href="post.php" class="button is-info"> Post</a>
 
     <?php
     function disconnect() {
@@ -39,7 +39,7 @@ global $isAdmin;
         disconnect();
     }
     ?>
-    <a href='index.php?disconnect=true'>Disconnect</a>
+    <a href='index.php?disconnect=true' class="button is-danger">Disconnect</a>
 
 
 <!-- Post -->
