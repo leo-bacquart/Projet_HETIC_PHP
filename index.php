@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -11,7 +15,33 @@
 
 
 <!-- Page login -->
-<?php include_once('handle_login.php'); ?>
+<?php
+include_once('handle_login.php');
+global $isLoggedIn;
+global $isAdmin;
+?>
+
+
+
+<!-- Possibilité de poster uniquement si user est connecté -->
+<?php if ($_SESSION['isLoggedIn']): ?>
+
+    <a href="post.php"> Poster</a>
+
+    <?php
+    function disconnect() {
+        session_destroy();
+    }
+    if (isset($_GET['disconnect'])) {
+        disconnect();
+    }
+    ?>
+    <a href='index.php?disconnect=true'>Disconnect</a>
+
+
+<!-- Post -->
+
+<?php endif; ?>
 
 
 </body>
