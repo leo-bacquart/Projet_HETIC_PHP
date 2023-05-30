@@ -34,6 +34,8 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             if ($user['isAdmin']) {
                 $isAdmin = true;
                 $_SESSION['isAdmin'] = true;
+            } else {
+                $_SESSION['isAdmin'] = false;
             }
         }
     }
@@ -41,14 +43,18 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ?>
 
 <?php if (!$_SESSION['isLoggedIn'] || !isset($_SESSION['isLoggedIn'])): ?>
-    <form action="#" method="post">
-        <label for="username">Username : </label>
-        <input type="text" name="username" id="username">
-        <br><br>
-        <label for="password">Password : </label>
-        <input type="password" name="password" id="password">
-        <br><br>
-        <input type="submit" content="Submit">
+    <form action="#" method="post" class="column is-three-fifths is-offset-one-fifth">
+        <div class="field">
+            <label for="username" class="label">Username : </label>
+            <input type="text" name="username" id="username" class="input">
+        </div>
+
+        <div class="field">
+            <label for="password" class="label">Password : </label>
+            <input type="password" name="password" id="password" class="input">
+        </div>
+
+        <input type="submit" content="Submit" class="button is-link">
     </form>
 <?php else: ?>
     <div class="connected">Bonjour <?php
